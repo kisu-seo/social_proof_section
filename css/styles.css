@@ -1,0 +1,360 @@
+/***
+    The new CSS reset - version 1.11.3 (last updated 25.08.2024)
+    GitHub page: https://github.com/elad2412/the-new-css-reset
+***/
+
+/*
+    Remove all the styles of the "User-Agent-Stylesheet", except for the 'display' property
+    - The "symbol *" part is to solve Firefox SVG sprite bug
+    - The "html" element is excluded, otherwise a bug in Chrome breaks the CSS hyphens property (https://github.com/elad2412/the-new-css-reset/issues/36)
+ */
+*:where(:not(html, iframe, canvas, img, svg, video, audio):not(svg *, symbol *)) {
+    all: unset;
+    display: revert;
+}
+
+/* Preferred box-sizing value */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Fix mobile Safari increase font-size on landscape mode */
+html {
+    -moz-text-size-adjust: none;
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
+}
+
+/* Reapply the pointer cursor for anchor tags */
+a,
+button {
+    cursor: revert;
+}
+
+/* Remove list styles (bullets/numbers) */
+ol,
+ul,
+menu,
+summary {
+    list-style: none;
+}
+
+/* Firefox: solve issue where nested ordered lists continue numbering from parent (https://bugzilla.mozilla.org/show_bug.cgi?id=1881517) */
+ol {
+    counter-reset: revert;
+}
+
+/* For images to not be able to exceed their container */
+img {
+    max-inline-size: 100%;
+    max-block-size: 100%;
+}
+
+/* removes spacing between cells in tables */
+table {
+    border-collapse: collapse;
+}
+
+/* Safari - solving issue when using user-select:none on the <body> text input doesn't working */
+input,
+textarea {
+    -webkit-user-select: auto;
+}
+
+/* revert the 'white-space' property for textarea elements on Safari */
+textarea {
+    white-space: revert;
+}
+
+/* minimum style to allow to style meter element */
+meter {
+    -webkit-appearance: revert;
+    appearance: revert;
+}
+
+/* preformatted text - use only for this feature */
+:where(pre) {
+    all: revert;
+    box-sizing: border-box;
+}
+
+/* reset default text opacity of input placeholder */
+::placeholder {
+    color: unset;
+}
+
+/* fix the feature of 'hidden' attribute.
+   display:revert; revert to element instead of attribute */
+:where([hidden]) {
+    display: none;
+}
+
+/* revert for bug in Chromium browsers
+   - fix for the content editable attribute will work properly.
+   - webkit-user-select: auto; added for Safari in case of using user-select:none on wrapper element*/
+:where([contenteditable]:not([contenteditable="false"])) {
+    -moz-user-modify: read-write;
+    -webkit-user-modify: read-write;
+    overflow-wrap: break-word;
+    -webkit-line-break: after-white-space;
+    -webkit-user-select: auto;
+}
+
+/* apply back the draggable feature - exist only in Chromium and Safari */
+:where([draggable="true"]) {
+    -webkit-user-drag: element;
+}
+
+/* Revert Modal native behavior */
+:where(dialog:modal) {
+    all: revert;
+    box-sizing: border-box;
+}
+
+/* Remove details summary webkit styles */
+::-webkit-details-marker {
+    display: none;
+}
+
+:root {
+    --font-family: 'League Spartan', serif, sans-serif;
+    --primary-color: #512051;
+    --secondary-color: #927b91;
+    --third-color: #ee69a4;
+    --background-color: #f7f2f7;
+    --white: #fff;
+    --base-font-size: 17px;
+}
+
+/* Base styles */
+html {
+    font-family: var(--font-family);
+    font-optical-sizing: auto;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    position: relative;
+    background-image: url(../images/bg-pattern-top-mobile.svg), url(../images/bg-pattern-bottom-mobile.svg);
+    background-repeat: no-repeat, no-repeat;
+    background-position: top left, bottom right;
+}
+
+main {
+    padding: 0 20px;
+}
+
+/* Container and Intro */
+.container_1 {
+    width: 100%;
+    padding-top: 82px;
+}
+
+.intro {
+    text-align: center;
+    margin-bottom: 39px;
+}
+
+.intro h1 {
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 32px;
+    letter-spacing: -1.43px;
+    color: var(--primary-color);
+    margin-bottom: 17px;
+    width: 327px;
+}
+
+.intro p {
+    font-size: 19px;
+    font-weight: 500;
+    line-height: 25px;
+    letter-spacing: -0.63px;
+    color: var(--secondary-color);
+    width: 327px;
+}
+
+/* Ratings section */
+.ratings {
+    margin-bottom: 49px;
+}
+
+.ratings__reviews,
+.ratings__report-guru,
+.ratings__besttech {
+    width: 327px;
+    height: 78px;
+    border-radius: 8px;
+    background-color: var(--background-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 16px;
+}
+
+.ratings__besttech {
+    margin-bottom: 0;
+}
+
+.ratings__reviews p,
+.ratings__report-guru p,
+.ratings__besttech p {
+    font-size: var(--base-font-size);
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+/* Reviews section */
+.reviews {
+    margin-bottom: 99px;
+}
+
+.colton-smith,
+.irene-roberts,
+.anne-wallace {
+    background-color: var(--primary-color);
+    border-radius: 8px;
+    padding: 0 32px;
+    margin-bottom: 16px;
+    width: 327px;
+}
+
+.anne-wallace {
+    margin-bottom: 0;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    padding-top: 40px;
+    margin-bottom: 23px;
+}
+
+.profile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.profile__info {
+    margin-left: 23px;
+}
+
+.profile__info h2 {
+    font-size: var(--base-font-size);
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 4px;
+}
+
+.profile__info p {
+    font-size: var(--base-font-size);
+    font-weight: 400;
+    color: var(--third-color);
+}
+
+.colton-smith__review,
+.irene-roberts__review,
+.anne-wallace__review {
+    font-size: var(--base-font-size);
+    font-weight: 400;
+    color: var(--white);
+    line-height: 22px;
+    letter-spacing: -0.2px;
+    width: 263px;
+    padding-bottom: 35px;
+}
+
+/* Desktop styles */
+@media screen and (min-width: 1024px) {
+    body {
+        background-image: url(../images/bg-pattern-top-desktop.svg), url(../images/bg-pattern-bottom-desktop.svg);
+    }
+
+    main {
+        padding: 0;
+    }
+
+    .container_1 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        max-width: 1110px;
+        padding-top: 118px;
+        margin-bottom: 71px;
+    }
+
+    .intro {
+        text-align: left;
+        margin-bottom: 0;
+        margin-right: 125px;
+    }
+
+    .intro h1 {
+        font-size: 56px;
+        line-height: 48px;
+        letter-spacing: -2px;
+        width: 445px;
+        margin-bottom: 16px;
+    }
+
+    .intro p {
+        width: 445px;
+    }
+
+    .ratings {
+        margin-bottom: 0;
+    }
+
+    .ratings__reviews,
+    .ratings__report-guru,
+    .ratings__besttech {
+        width: 445px;
+        height: 56px;
+        flex-direction: row;
+        gap: 32.45px;
+    }
+
+    .ratings__report-guru {
+        margin-left: 48px;
+    }
+
+    .ratings__besttech {
+        margin-left: 95px;
+    }
+
+    .reviews {
+        display: flex;
+        gap: 30px;
+        width: 1110px;
+    }
+
+    .colton-smith,
+    .irene-roberts,
+    .anne-wallace {
+        width: 350px;
+        margin-bottom: 0;
+    }
+
+    .colton-smith__review,
+    .irene-roberts__review,
+    .anne-wallace__review {
+        width: 286px;
+    }
+
+    .irene-roberts {
+        transform: translateY(16px);
+    }
+
+    .anne-wallace {
+        transform: translateY(32px);
+    }
+}
